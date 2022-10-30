@@ -10,10 +10,28 @@ function imc() {
     const peso = document.getElementById('peso').value;
     const result = document.getElementById('resultado')
 
-    if (nome.value !== '' && alt !== '' && peso !== '') {
-        alert('Valor preenchido')
+    if (nome !== '' && alt !== '' && peso !== '') {
+        const vlrIMC = (peso / (alt * alt)).toFixed(1);
+        result.textContent = vlrIMC;
+
+        let classification = '';
+
+        if (vlrIMC < 18.5) {
+            classification = 'abaixo do peso'
+        } else if (vlrIMC < 25) {
+            classification = 'com peso ideal. PARABÉNS!!!'
+        } else if (vlrIMC < 30) {
+            classification = 'levemente acima do peso'
+        } else if (vlrIMC < 35) {
+            classification = 'obesidade leve'
+        } else if (vlrIMC < 40) {
+            classification = 'obesidade preocupante'
+        } else {
+            classification = 'obesidade morbida'
+        }
+        result.textContent = `${nome} seu IMC é ${vlrIMC} você está ${classification}`
     } else {
-        alt('Preencha todos os campos')
+        result.textContent = 'Preencha todos os campos'
     }
 
 }
